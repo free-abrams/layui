@@ -1,6 +1,6 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
+//use Dingo\Api\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+$app = app('Dingo\Api\Routing\Router');
 
-Route::get('/', function () {
-    return view('welcome');
+$app->version('v1', [
+	'namespace' => 'App\Api\Test'
+],function ($api) {
+	$api->get('/test', 'TestController@test');
+	$api->get('/cate', 'TestController@cate');
+	$api->get('/test-job', 'TestController@testJob');
 });
